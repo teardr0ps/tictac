@@ -1,0 +1,153 @@
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.field {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    border: 2px solid black;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.square {
+    width: 132px;
+    height: 132px;
+    background-color: white;
+    text-transform: uppercase;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 132px;
+    font-size: 65px;
+    user-select: none;
+}
+
+.winner {
+    width: 400px;
+    height: 150px;
+    margin: 20px auto 0;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+}
+
+.text-row {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: 2px solid black;
+}
+
+.score-title {
+    width: 100%;
+}
+
+.score-title.current-score p{
+    text-align: center;
+    margin: 0 auto;
+}
+
+.score-title:first-child {
+    border-right: 2px solid black;
+}
+
+.text-row p {
+    text-align: center;
+    line-height: 38px;
+}
+
+.buttons-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.button {
+    width: 100px;
+    height: 50px;
+    border: 2px solid red;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.modal {
+   /*  Установаем ширину окна  */
+   width: 100%;
+   max-width: 500px;
+   
+   /*  Центрируем и задаем z-index */
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   z-index: 30; /* Должен быть выше чем у подложки*/
+   
+   /*  Побочные стили   */
+   box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2); 
+   text-align: center;
+   padding: 30px;
+   border-radius: 3px;
+   background-color: #fff;
+   transition: 0.3s all;
+ 
+}
+
+.modal .button {
+    margin: 0 auto;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.modal__cross {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    fill: #444;
+    cursor: pointer;
+}
+
+.modal-overlay {
+   
+    /* Скрываем подложку  */
+    display: none;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 20;
+    transition: .3s all;
+}
+
+.scroll-hidden {
+    overflow: hidden;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
