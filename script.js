@@ -12,7 +12,7 @@ let counter = 0;
 let winCountX = 0;
 let winCount0 = 0;
 
-function winCount(winX, win0) {
+function setWinCount(winX, win0) {
     scoreX.textContent = `Игрок Х побед - ${winX}`;
     score0.textContent = `Игрок 0 побед - ${win0}`;
 }
@@ -34,28 +34,19 @@ function hideModal(elem) {
     document.body.classList.remove('scroll-hidden');
 }
 
-function placeItem(event, i) {
-    if (counter === 0 && event.target.textContent === '') {
-        event.target.textContent = 'x';
+function placeItem(target, i) {
+    if (counter === 0 && target.textContent === '') {
+        target.textContent = 'x';
         counter = counter + 1;
         gameState[i] = 'x';
-        handleCurrentPlayer(counter);
-        checkWinner(gameState);
-    } else if (event.target.textContent === '') {
-        event.target.textContent = '0';
+    } else if (target.textContent === '') {
+        target.textContent = '0';
         counter = counter - 1;
         gameState[i] = '0';
-        handleCurrentPlayer(counter);
-        checkWinner(gameState);
     }
+    handleCurrentPlayer(counter);
+    checkWinner(gameState);
 }
-
-
-square.forEach((item, i) => {
-    item.addEventListener('click', (e) => {
-        placeItem(e, i);
-    });
-});
 
 function checkWinner(gameState) {
     const winCondition = [
@@ -91,7 +82,7 @@ function checkWinner(gameState) {
     }
 
     if (gameWinnner !== '') {
-        winCount(winCountX, winCount0);
+        setWinCount(winCountX, winCount0);
         showModal(modal);
         document.querySelector('.modal__title').textContent = `Победил игрок ${gameWinnner.toUpperCase()}!`;
     } else if (gameState.indexOf('') === -1) {
@@ -100,7 +91,7 @@ function checkWinner(gameState) {
     }
 }
 
-function newGame() {
+function startNewGame() {
     square.forEach(item => {
         item.textContent = '';
     });
@@ -115,11 +106,17 @@ function newGame() {
     console.log(gameState);
 }
 
+square.forEach((item, i) => {
+    item.addEventListener('click', (e) => {
+        placeItem(e.target, i);
+    });
+});
+
 closeModal.addEventListener('click', () => hideModal(modal));
 
 newGameModalButton.addEventListener('click', () => {
     hideModal(modal);
-    newGame();
+    startNewGame();
 });
 
-newGameButton.addEventListener('click', newGame);
+newGameButton.addEventListener('click', startNewGame);
